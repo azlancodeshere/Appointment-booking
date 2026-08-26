@@ -166,6 +166,8 @@ const registerUser = async (req, res) => {
 
     } catch (error) {
 
+        console.log("register error:", error)
+
         return res.status(
             error.statusCode || 500
         ).json(
@@ -180,8 +182,11 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-
+         
+         
         const { email, username, password } = req.body;
+
+      
 
         if ((!email && !username) || !password) {
             throw new ApiError(
@@ -189,6 +194,7 @@ const loginUser = async (req, res) => {
                 "email/username and password are required"
             )
         }
+       
 
         const user = await User.findOne({
             $or: [
@@ -196,6 +202,8 @@ const loginUser = async (req, res) => {
                 { username }
             ]
         })
+
+        console.log("found user:", user);
         if (!user) {
             throw new ApiError(
                 404,
@@ -237,8 +245,9 @@ const loginUser = async (req, res) => {
                 new ApiResponse(200,
                     "User logged in successfully",
                     loggedInUser));
-
     } catch (error) {
+
+        console.log("login error:", error)
 
         return res.status(
             error.statusCode || 500
