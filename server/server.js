@@ -4,6 +4,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import userRoutes from "./src/routes/user.route.js";
+import appointmentRoutes from "./src/routes/appointment.route.js"
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
+app.use("/api/appointment", appointmentRoutes)
 
 connectDB();
 
