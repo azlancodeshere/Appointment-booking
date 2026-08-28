@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import userRoutes from "./src/routes/user.route.js";
 import appointmentRoutes from "./src/routes/appointment.route.js"
+import availabilityRoutes from "./src/routes/availability.route.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
 app.use("/api/appointment", appointmentRoutes)
+app.use("/api/availability", availabilityRoutes);
 
 connectDB();
 

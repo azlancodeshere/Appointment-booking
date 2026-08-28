@@ -182,11 +182,11 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-         
-         
+
+
         const { email, username, password } = req.body;
 
-      
+
 
         if ((!email && !username) || !password) {
             throw new ApiError(
@@ -194,7 +194,7 @@ const loginUser = async (req, res) => {
                 "email/username and password are required"
             )
         }
-       
+
 
         const user = await User.findOne({
             $or: [
