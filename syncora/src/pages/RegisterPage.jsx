@@ -53,7 +53,7 @@ function RegisterPage() {
     <div className="min-h-screen bg-slate-950 px-4 py-10">
       <div className="mx-auto w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-8 shadow-2xl">
 
-        {/* Role Select */}
+       
         <div className="mb-6">
           <label className="mb-2 block text-sm font-medium text-slate-300">
             Select your role
@@ -79,7 +79,7 @@ function RegisterPage() {
         </div>
 
 
-        {/* CLIENT FORM */}
+      
         {role === "client" && (
           <>
             <div className="mb-8 text-center">
@@ -97,7 +97,6 @@ function RegisterPage() {
               onSubmit={handleSubmit}
             >
 
-              {/* Full Name */}
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Full Name
@@ -114,7 +113,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Username */}
+             
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Username
@@ -131,7 +130,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Email */}
+              
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Email
@@ -148,7 +147,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Password */}
+              
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Password
@@ -165,7 +164,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Gender */}
+             
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Gender
@@ -196,7 +195,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Button */}
+             
               <button
                 type="submit"
                 className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition duration-200 hover:bg-blue-700 active:scale-[0.98]"
@@ -220,7 +219,7 @@ function RegisterPage() {
         )}
 
 
-        {/* PROFESSIONAL FORM */}
+       
         {role === "professional" && (
           <>
             <div className="mb-8 text-center">
@@ -255,7 +254,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Username */}
+             
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Username
@@ -272,7 +271,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Email */}
+            
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Email
@@ -289,7 +288,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Password */}
+             
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Password
@@ -306,7 +305,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Gender */}
+             
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Gender
@@ -337,7 +336,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Experience */}
+              
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Years of Experience
@@ -355,7 +354,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Service Type */}
+             
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Service Type
@@ -390,7 +389,7 @@ function RegisterPage() {
               </div>
 
 
-              {/* Button */}
+             
               <button
                 type="submit"
                 className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition duration-200 hover:bg-blue-700 active:scale-[0.98]"

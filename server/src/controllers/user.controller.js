@@ -122,7 +122,7 @@ const registerUser = async (req, res) => {
                 )
             }
         } else {
-            // client (or any non-professional role) — strip these out
+           
             serviceType = undefined
             yearsOfExperience = undefined
         }
