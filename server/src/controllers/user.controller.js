@@ -107,35 +107,32 @@ const refreshAccessToken = async (req, res) => {
 
 const registerUser = async (req, res) => {
     try {
-        const { email, password, username, fullname, role, serviceType } = req.body
+        const { email, password, username, fullname, role, gender } = req.body
+        let { serviceType, yearsOfExperience } = req.body
 
         if ([email, password, username, fullname, role].some((field) => !field || field.trim() === "")) {
-
-            throw new ApiError(
-                400,
-                "All fields are required"
-            )
+            throw new ApiError(400, "All fields are required")
         }
 
-        if (role === "professional" && (!serviceType || serviceType.trim() === "")) {
-            throw new ApiError(
-                400,
-                "Service type is required for professional"
-            )
+        if (role === "professional") {
+            if (!yearsOfExperience || !serviceType) {
+                throw new ApiError(
+                    400,
+                    "Years of experience and service type are required for professionals"
+                )
+            }
+        } else {
+            // client (or any non-professional role) — strip these out
+            serviceType = undefined
+            yearsOfExperience = undefined
         }
 
         const existingUser = await User.findOne({
-            $or: [
-                { email },
-                { username }
-            ]
+            $or: [{ email }, { username }]
         });
 
         if (existingUser) {
-            throw new ApiError(
-                409,
-                "User with email or username allready exists"
-            )
+            throw new ApiError(409, "User with email or username allready exists")
         }
 
         const user = await User.create({
@@ -144,40 +141,26 @@ const registerUser = async (req, res) => {
             fullname,
             username,
             role,
-            serviceType
+            gender,
+            serviceType,
+            yearsOfExperience
         })
 
         const createdUser = await User.findById(user._id).select("-password -refreshToken");
         if (!createdUser) {
-            throw new ApiError(
-                500,
-                "something went wrong while registring the user"
-            )
+            throw new ApiError(500, "something went wrong while registring the user")
         }
 
         return res.status(201).json(
-            new ApiResponse(
-                201,
-                "User registerd successfully",
-                createdUser
-
-            )
+            new ApiResponse(201, "User registerd successfully", createdUser)
         )
 
     } catch (error) {
-
         console.log("register error:", error)
-
-        return res.status(
-            error.statusCode || 500
-        ).json(
-            new ApiError(
-                error.statusCode || 500,
-                error.message || "Something went wrong"
-            )
+        return res.status(error.statusCode || 500).json(
+            new ApiError(error.statusCode || 500, error.message || "Something went wrong")
         )
     }
-
 }
 
 const loginUser = async (req, res) => {

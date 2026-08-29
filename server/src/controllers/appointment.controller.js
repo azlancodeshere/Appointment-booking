@@ -387,5 +387,5 @@ export {
     bookAppointment, getMyAppointments,
     updateAppointmentstatus,
     updateAppointment, cancelAppointment
-azlan
+
 }
