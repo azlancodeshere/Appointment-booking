@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api.js"
+import {AuthContext} from "../context/AuthContext.jsx"
 
 function LoginPage() {
 
@@ -9,6 +10,13 @@ function LoginPage() {
         password:""
 
     })
+
+
+    const navigate = useNavigate();
+    
+
+   const {setUser, setIsAuthenticated} = useContext(AuthContext)
+
 
     const handleChange = (e)=>{
         setFormData({
@@ -25,10 +33,15 @@ function LoginPage() {
             try {
 
               const response = await api.post("/users/login", formData)
-              console.log(response)
+              console.log(response.data)
+              setUser(response.data.data);
+            setIsAuthenticated(true)
+ 
+            navigate("/home")
               
             } catch (error) {
               console.log(error)
+               setIsAuthenticated(false)
               
             }
 

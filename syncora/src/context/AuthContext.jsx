@@ -4,12 +4,12 @@ import api from "../api/api.js";
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const logout = async () => {
         try {
-            const response = await api.post("/users/logout");
+            await api.post("/users/logout");
 
             setUser(null);
             setIsAuthenticated(false);
@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
 
             const response = await api.get("/users/current-user");
 
-            setUser(response.data.user);
+            setUser(response.data.data);
             setIsAuthenticated(true);
 
         } catch (error) {
@@ -38,7 +38,8 @@ function AuthProvider({ children }) {
 
     useEffect(() => {
         getCurrentUser();
-    }, []);
+    },
+     []);
 
     const authValue = {
         user,
