@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
 
+
 import {
     FaHeart,
     FaTooth,
@@ -14,9 +15,15 @@ import {
     FaChild,
 } from "react-icons/fa";
 
-import { GiBrain } from "react-icons/gi";
+
+
+
+import {GiBrain} from "react-icons/gi";
+
+
 
 import Navbar from "../components/Navbar";
+
 
 
 function HomePage() {
@@ -530,97 +537,7 @@ function HomePage() {
                     {/* Right Booking Card */}
                     {/* -------------------------------- */}
 
-                    <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
-
-
-                        {/* Card Header */}
-
-                        <div className="mb-8 flex items-center justify-between">
-
-                            <div>
-
-                                <p className="text-sm text-slate-400">
-                                    Quick Booking
-                                </p>
-
-                                <h3 className="mt-1 text-2xl font-bold">
-                                    Find a {currentService.name}
-                                </h3>
-
-                            </div>
-
-
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-2xl">
-                                {currentService.icon}
-                            </div>
-
-                        </div>
-
-
-                        {/* Search */}
-
-                        <div>
-
-                            <label className="text-sm text-slate-400">
-                                {currentService.searchLabel}
-                            </label>
-
-
-                            <input
-                                type="text"
-                                placeholder={currentService.searchPlaceholder}
-                                className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-slate-300 outline-none placeholder:text-slate-500 focus:border-blue-500"
-                            />
-
-                        </div>
-
-
-                        {/* Category */}
-
-                        <div className="mt-5">
-
-                            <label className="text-sm text-slate-400">
-                                {currentService.categoryLabel}
-                            </label>
-
-
-                            <select
-                                className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-slate-300 outline-none focus:border-blue-500"
-                            >
-
-                                <option>
-                                    {currentService.categoryPlaceholder}
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        {/* Date */}
-
-                        <div className="mt-5">
-
-                            <label className="text-sm text-slate-400">
-                                Preferred date
-                            </label>
-
-
-                            <input
-                                type="date"
-                                className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-slate-300 outline-none focus:border-blue-500"
-                            />
-
-                        </div>
-
-
-                        {/* Button */}
-
-                        <button className="mt-6 w-full rounded-lg bg-blue-600 py-3 font-semibold hover:bg-blue-700">
-                            {currentService.buttonText}
-                        </button>
-
-                    </div>
+                   
 
                 </div>
 
