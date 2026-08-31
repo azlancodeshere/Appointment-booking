@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 
 import {
@@ -28,6 +29,8 @@ import Navbar from "../components/Navbar";
 
 function HomePage() {
 
+
+    const navigate = useNavigate();
     // --------------------------------
     // Selected service
     // --------------------------------
@@ -519,7 +522,10 @@ function HomePage() {
 
                         <div className="mt-8 flex flex-wrap gap-4">
 
-                            <button className="rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700">
+                            <button
+                             onClick={() => navigate("/doctors")}
+                            
+                            className="rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700">
                                 {currentService.primaryButton}
                             </button>
 
