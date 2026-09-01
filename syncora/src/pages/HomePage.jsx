@@ -31,16 +31,12 @@ function HomePage() {
 
 
     const navigate = useNavigate();
-    // --------------------------------
-    // Selected service
-    // --------------------------------
+  
 
     const [activeService, setActiveService] = useState("doctor");
 
 
-    // --------------------------------
-    // Services Data
-    // --------------------------------
+   
 
     const services = {
 
@@ -127,9 +123,6 @@ function HomePage() {
         },
 
 
-        // --------------------------------
-        // Lawyer
-        // --------------------------------
 
         lawyer: {
             name: "Lawyer",
@@ -214,9 +207,7 @@ function HomePage() {
         },
 
 
-        // --------------------------------
-        // Trainer
-        // --------------------------------
+      
 
         trainer: {
             name: "Trainer",
@@ -301,9 +292,7 @@ function HomePage() {
         },
 
 
-        // --------------------------------
-        // Salon
-        // --------------------------------
+       
 
         salon: {
             name: "Salon",
@@ -389,9 +378,7 @@ function HomePage() {
     };
 
 
-    // --------------------------------
-    // Current Service
-    // --------------------------------
+  
 
     const currentService = services[activeService];
 
@@ -403,10 +390,6 @@ function HomePage() {
             <Navbar />
 
 
-            {/* -------------------------------- */}
-            {/* Service Selector */}
-            {/* -------------------------------- */}
-
             <section className="px-8 pt-10">
 
                 <div className="mx-auto max-w-7xl">
@@ -417,8 +400,8 @@ function HomePage() {
 
                     <div className="flex flex-wrap gap-3">
 
-                        {/* Doctor */}
-
+                        
+                     
                         <button
                             onClick={() => setActiveService("doctor")}
                             className={`rounded-xl px-5 py-3 font-semibold transition ${
@@ -431,8 +414,7 @@ function HomePage() {
                         </button>
 
 
-                        {/* Lawyer */}
-
+                      
                         <button
                             onClick={() => setActiveService("lawyer")}
                             className={`rounded-xl px-5 py-3 font-semibold transition ${
@@ -445,7 +427,7 @@ function HomePage() {
                         </button>
 
 
-                        {/* Trainer */}
+                      
 
                         <button
                             onClick={() => setActiveService("trainer")}
@@ -459,7 +441,7 @@ function HomePage() {
                         </button>
 
 
-                        {/* Salon */}
+                       
 
                         <button
                             onClick={() => setActiveService("salon")}
@@ -479,18 +461,13 @@ function HomePage() {
             </section>
 
 
-            {/* -------------------------------- */}
-            {/* Hero Section */}
-            {/* -------------------------------- */}
-
+           
             <section className="px-8 py-20">
 
                 <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
 
 
-                    {/* -------------------------------- */}
-                    {/* Left */}
-                    {/* -------------------------------- */}
+                  
 
                     <div>
 
@@ -539,10 +516,7 @@ function HomePage() {
                     </div>
 
 
-                    {/* -------------------------------- */}
-                    {/* Right Booking Card */}
-                    {/* -------------------------------- */}
-
+                
                    
 
                 </div>
@@ -550,9 +524,7 @@ function HomePage() {
             </section>
 
 
-            {/* -------------------------------- */}
-            {/* Stats */}
-            {/* -------------------------------- */}
+             
 
             <section className="border-y border-slate-800 bg-slate-900/50 px-8 py-10">
 
@@ -582,9 +554,6 @@ function HomePage() {
             </section>
 
 
-            {/* -------------------------------- */}
-            {/* Popular Categories */}
-            {/* -------------------------------- */}
 
             <section className="px-8 py-20">
 
@@ -612,7 +581,7 @@ function HomePage() {
                     </div>
 
 
-                    {/* Categories */}
+                  
 
                     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -652,9 +621,7 @@ function HomePage() {
             </section>
 
 
-            {/* -------------------------------- */}
-            {/* Footer */}
-            {/* -------------------------------- */}
+           
 
             <Footer/>
         </div>
