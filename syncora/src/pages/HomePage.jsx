@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
-
 import {
     FaHeart,
     FaTooth,
@@ -16,30 +15,20 @@ import {
     FaChild,
 } from "react-icons/fa";
 
-
-
-
-import {GiBrain} from "react-icons/gi";
-
-
+import { GiBrain } from "react-icons/gi";
 
 import Navbar from "../components/Navbar";
 
-
-
 function HomePage() {
-
-
     const navigate = useNavigate();
-  
 
+    // Default selected service
     const [activeService, setActiveService] = useState("doctor");
 
-
-   
-
     const services = {
-
+        // =========================
+        // DOCTOR
+        // =========================
         doctor: {
             name: "Doctor",
             icon: "🩺",
@@ -51,18 +40,14 @@ function HomePage() {
                 "Find the right doctor, choose a convenient time, and manage all your appointments from one simple platform.",
 
             searchLabel: "Search doctor",
-            searchPlaceholder:
-                "Search by doctor or specialty",
+            searchPlaceholder: "Search by doctor or specialty",
 
             categoryLabel: "Specialty",
-            categoryPlaceholder:
-                "Select specialty",
+            categoryPlaceholder: "Select specialty",
 
             buttonText: "Search Availability",
-            primaryButton:
-                "Book Appointment",
-            secondaryButton:
-                "Explore Doctors",
+            primaryButton: "Book Appointment",
+            secondaryButton: "Explore Doctors",
 
             stats: [
                 {
@@ -122,8 +107,9 @@ function HomePage() {
             ],
         },
 
-
-
+        // =========================
+        // LAWYER
+        // =========================
         lawyer: {
             name: "Lawyer",
             icon: "⚖️",
@@ -143,10 +129,8 @@ function HomePage() {
                 "Select legal service",
 
             buttonText: "Find Lawyers",
-            primaryButton:
-                "Book Consultation",
-            secondaryButton:
-                "Explore Lawyers",
+            primaryButton: "Book Consultation",
+            secondaryButton: "Explore Lawyers",
 
             stats: [
                 {
@@ -206,9 +190,9 @@ function HomePage() {
             ],
         },
 
-
-      
-
+        // =========================
+        // TRAINER
+        // =========================
         trainer: {
             name: "Trainer",
             icon: "🏋️",
@@ -228,10 +212,8 @@ function HomePage() {
                 "Select training type",
 
             buttonText: "Find Trainers",
-            primaryButton:
-                "Book Training",
-            secondaryButton:
-                "Explore Trainers",
+            primaryButton: "Book Training",
+            secondaryButton: "Explore Trainers",
 
             stats: [
                 {
@@ -291,9 +273,9 @@ function HomePage() {
             ],
         },
 
-
-       
-
+        // =========================
+        // SALON / BARBER
+        // =========================
         salon: {
             name: "Salon",
             icon: "💇",
@@ -313,10 +295,8 @@ function HomePage() {
                 "Select salon service",
 
             buttonText: "Find Salons",
-            primaryButton:
-                "Book Appointment",
-            secondaryButton:
-                "Explore Salons",
+            primaryButton: "Book Appointment",
+            secondaryButton: "Explore Salons",
 
             stats: [
                 {
@@ -377,19 +357,68 @@ function HomePage() {
         },
     };
 
-
-  
-
+    // Current selected service
     const currentService = services[activeService];
+
+
+    // =====================================================
+    // BOOK BUTTON NAVIGATION
+    // =====================================================
+    const handleBookAppointment = () => {
+        if (activeService === "doctor") {
+            navigate("/doctors");
+        }
+
+        else if (activeService === "lawyer") {
+            navigate("/lawyers");
+        }
+
+        else if (activeService === "trainer") {
+            navigate("/trainers");
+        }
+
+        else if (activeService === "salon") {
+            // Salon selected -> BarberPage.jsx
+            navigate("/barbers");
+        }
+    };
+
+
+    // =====================================================
+    // EXPLORE BUTTON NAVIGATION
+    // =====================================================
+    const handleExplore = () => {
+        if (activeService === "doctor") {
+            navigate("/doctors");
+        }
+
+        else if (activeService === "lawyer") {
+            navigate("/lawyers");
+        }
+
+        else if (activeService === "trainer") {
+            navigate("/trainers");
+        }
+
+        else if (activeService === "salon") {
+            // Salon selected -> BarberPage.jsx
+            navigate("/barbers");
+        }
+    };
 
 
     return (
         <div className="min-h-screen bg-slate-950 text-white">
 
-            {/* Navbar */}
+            {/* =========================================
+                NAVBAR
+            ========================================== */}
             <Navbar />
 
 
+            {/* =========================================
+                SERVICE SELECTOR
+            ========================================== */}
             <section className="px-8 pt-10">
 
                 <div className="mx-auto max-w-7xl">
@@ -398,10 +427,10 @@ function HomePage() {
                         What are you looking for?
                     </p>
 
+
                     <div className="flex flex-wrap gap-3">
 
-                        
-                     
+                        {/* ================= DOCTOR ================= */}
                         <button
                             onClick={() => setActiveService("doctor")}
                             className={`rounded-xl px-5 py-3 font-semibold transition ${
@@ -414,7 +443,7 @@ function HomePage() {
                         </button>
 
 
-                      
+                        {/* ================= LAWYER ================= */}
                         <button
                             onClick={() => setActiveService("lawyer")}
                             className={`rounded-xl px-5 py-3 font-semibold transition ${
@@ -427,8 +456,7 @@ function HomePage() {
                         </button>
 
 
-                      
-
+                        {/* ================= TRAINER ================= */}
                         <button
                             onClick={() => setActiveService("trainer")}
                             className={`rounded-xl px-5 py-3 font-semibold transition ${
@@ -441,8 +469,7 @@ function HomePage() {
                         </button>
 
 
-                       
-
+                        {/* ================= SALON ================= */}
                         <button
                             onClick={() => setActiveService("salon")}
                             className={`rounded-xl px-5 py-3 font-semibold transition ${
@@ -461,21 +488,22 @@ function HomePage() {
             </section>
 
 
-           
+            {/* =========================================
+                HERO SECTION
+            ========================================== */}
             <section className="px-8 py-20">
 
                 <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
 
-
-                  
-
                     <div>
 
+                        {/* Badge */}
                         <span className="rounded-full bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-400">
                             Simple • Fast • Reliable
                         </span>
 
 
+                        {/* Heading */}
                         <h2 className="mt-6 text-5xl font-bold leading-tight">
 
                             {currentService.heading}
@@ -492,22 +520,29 @@ function HomePage() {
                         </h2>
 
 
+                        {/* Description */}
                         <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
                             {currentService.description}
                         </p>
 
 
+                        {/* Buttons */}
                         <div className="mt-8 flex flex-wrap gap-4">
 
+                            {/* ================= BOOK BUTTON ================= */}
                             <button
-                             onClick={() => navigate("/doctors")}
-                            
-                            className="rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700">
+                                onClick={handleBookAppointment}
+                                className="rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700"
+                            >
                                 {currentService.primaryButton}
                             </button>
 
 
-                            <button className="rounded-lg border border-slate-700 px-6 py-3 font-semibold text-slate-300 hover:bg-slate-900">
+                            {/* ================= EXPLORE BUTTON ================= */}
+                            <button
+                                onClick={handleExplore}
+                                className="rounded-lg border border-slate-700 px-6 py-3 font-semibold text-slate-300 hover:bg-slate-900"
+                            >
                                 {currentService.secondaryButton}
                             </button>
 
@@ -515,17 +550,14 @@ function HomePage() {
 
                     </div>
 
-
-                
-                   
-
                 </div>
 
             </section>
 
 
-             
-
+            {/* =========================================
+                STATS
+            ========================================== */}
             <section className="border-y border-slate-800 bg-slate-900/50 px-8 py-10">
 
                 <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 md:grid-cols-4">
@@ -554,14 +586,14 @@ function HomePage() {
             </section>
 
 
-
+            {/* =========================================
+                POPULAR CATEGORIES
+            ========================================== */}
             <section className="px-8 py-20">
 
                 <div className="mx-auto max-w-7xl">
 
-
                     {/* Section Header */}
-
                     <div className="mb-10">
 
                         <p className="text-sm font-medium text-blue-500">
@@ -581,8 +613,7 @@ function HomePage() {
                     </div>
 
 
-                  
-
+                    {/* Categories */}
                     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
                         {currentService.categories.map(
@@ -590,7 +621,7 @@ function HomePage() {
 
                                 <div
                                     key={index}
-                                    className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-blue-500 hover:-translate-y-1"
+                                    className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:-translate-y-1 hover:border-blue-500"
                                 >
 
                                     <div
@@ -621,12 +652,13 @@ function HomePage() {
             </section>
 
 
-           
+            {/* =========================================
+                FOOTER
+            ========================================== */}
+            <Footer />
 
-            <Footer/>
         </div>
     );
 }
-
 
 export default HomePage;
