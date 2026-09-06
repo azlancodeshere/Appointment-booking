@@ -26,9 +26,7 @@ function HomePage() {
     const [activeService, setActiveService] = useState("doctor");
 
     const services = {
-        // =========================
-        // DOCTOR
-        // =========================
+       
         doctor: {
             name: "Doctor",
             icon: "🩺",
@@ -107,9 +105,6 @@ function HomePage() {
             ],
         },
 
-        // =========================
-        // LAWYER
-        // =========================
         lawyer: {
             name: "Lawyer",
             icon: "⚖️",
@@ -190,9 +185,7 @@ function HomePage() {
             ],
         },
 
-        // =========================
-        // TRAINER
-        // =========================
+        
         trainer: {
             name: "Trainer",
             icon: "🏋️",
@@ -273,9 +266,7 @@ function HomePage() {
             ],
         },
 
-        // =========================
-        // SALON / BARBER
-        // =========================
+       
         salon: {
             name: "Salon",
             icon: "💇",
@@ -398,7 +389,7 @@ function HomePage() {
         }
 
         else if (activeService === "salon") {
-            // Salon selected -> BarberPage.jsx
+           
             navigate("/barbers");
         }
     };
