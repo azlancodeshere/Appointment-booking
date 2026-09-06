@@ -22,7 +22,7 @@ import {
 function HomePage() {
     const navigate = useNavigate();
 
-    // Default selected service
+   
     const [activeService, setActiveService] = useState("doctor");
 
     const services = {
@@ -357,14 +357,12 @@ function HomePage() {
         },
     };
 
-    // Current selected service
-    const currentService = services[activeService]; //  ise banye kyu kii mujhe sara data lena hai activeservice ka 
+    
+    const currentService = services[activeService];
     
 
 
-    // =====================================================
-    // BOOK BUTTON NAVIGATION
-    // =====================================================
+    
     const handleBookAppointment = () => {
         if (activeService === "doctor") {
             navigate("/doctors");
@@ -385,9 +383,7 @@ function HomePage() {
     };
 
 
-    // =====================================================
-    // EXPLORE BUTTON NAVIGATION
-    // =====================================================
+  
     const handleExplore = () => {
         if (activeService === "doctor") {
             navigate("/doctors");
@@ -411,15 +407,11 @@ function HomePage() {
     return (
         <div className="min-h-screen bg-slate-950 text-white">
 
-            {/* =========================================
-                NAVBAR
-            ========================================== */}
+          
             <Navbar />
 
 
-            {/* =========================================
-                SERVICE SELECTOR
-            ========================================== */}
+           
             <section className="px-8 pt-10">
 
                 <div className="mx-auto max-w-7xl">
@@ -489,9 +481,7 @@ function HomePage() {
             </section>
 
 
-            {/* =========================================
-                HERO SECTION
-            ========================================== */}
+          
             <section className="px-8 py-20">
 
                 <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
@@ -521,7 +511,7 @@ function HomePage() {
                         </h2>
 
 
-                        {/* Description */}
+                       
                         <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
                             {currentService.description}
                         </p>
@@ -530,7 +520,7 @@ function HomePage() {
                         {/* Buttons */}
                         <div className="mt-8 flex flex-wrap gap-4">
 
-                            {/* ================= BOOK BUTTON ================= */}
+                           
                             <button
                                 onClick={handleBookAppointment}
                                 className="rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700"
@@ -539,7 +529,7 @@ function HomePage() {
                             </button>
 
 
-                            {/* ================= EXPLORE BUTTON ================= */}
+                           
                             <button
                                 onClick={handleExplore}
                                 className="rounded-lg border border-slate-700 px-6 py-3 font-semibold text-slate-300 hover:bg-slate-900"
@@ -556,9 +546,7 @@ function HomePage() {
             </section>
 
 
-            {/* =========================================
-                STATS
-            ========================================== */}
+          
             <section className="border-y border-slate-800 bg-slate-900/50 px-8 py-10">
 
                 <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 md:grid-cols-4">
@@ -587,14 +575,12 @@ function HomePage() {
             </section>
 
 
-            {/* =========================================
-                POPULAR CATEGORIES
-            ========================================== */}
+          
             <section className="px-8 py-20">
 
                 <div className="mx-auto max-w-7xl">
 
-                    {/* Section Header */}
+                  
                     <div className="mb-10">
 
                         <p className="text-sm font-medium text-blue-500">
@@ -614,7 +600,7 @@ function HomePage() {
                     </div>
 
 
-                    {/* Categories */}
+                    
                     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
                         {currentService.categories.map(
@@ -653,9 +639,7 @@ function HomePage() {
             </section>
 
 
-            {/* =========================================
-                FOOTER
-            ========================================== */}
+           
             <Footer />
 
         </div>
