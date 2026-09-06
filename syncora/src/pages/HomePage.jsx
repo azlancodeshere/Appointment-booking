@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import { GiBrain } from "react-icons/gi";
+import Navbar from "../components/Navbar";
+
 
 import {
     FaHeart,
@@ -15,9 +18,6 @@ import {
     FaChild,
 } from "react-icons/fa";
 
-import { GiBrain } from "react-icons/gi";
-
-import Navbar from "../components/Navbar";
 
 function HomePage() {
     const navigate = useNavigate();
@@ -358,7 +358,8 @@ function HomePage() {
     };
 
     // Current selected service
-    const currentService = services[activeService];
+    const currentService = services[activeService]; //  ise banye kyu kii mujhe sara data lena hai activeservice ka 
+    
 
 
     // =====================================================
@@ -378,7 +379,7 @@ function HomePage() {
         }
 
         else if (activeService === "salon") {
-            // Salon selected -> BarberPage.jsx
+            
             navigate("/barbers");
         }
     };

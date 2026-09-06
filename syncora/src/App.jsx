@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage.jsx";
 
 import DoctorsPage from "./pages/DoctorsPage.jsx";
 import LawyerPage from "./pages/LawyerPage.jsx";
+import BarberPage from "./pages/BarberPage.jsx";
+import TrainerPage from "./pages/TrainerPage.jsx";
 
 
 function App() {
@@ -47,7 +49,17 @@ function App() {
                 element={<LawyerPage />}
             />
 
-          
+            {/* Barber */}
+            <Route
+                path="/barbers"
+                element={<BarberPage />}
+            />
+
+            {/* Trainer */}
+            <Route
+                path="/trainers"
+                element={<TrainerPage />}
+            />      
 
            
 
