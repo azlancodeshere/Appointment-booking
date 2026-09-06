@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
@@ -8,38 +8,32 @@ import {
     FaCalendarCheck
 } from "react-icons/fa";
 
+import api from "../api/api.js"
+
 function DoctorsPage() {
+    const [doctors, setDoctors] = useState([]);
 
-    const doctors = [
-        {
-            id: 1,
-            name: "Dr. Rahul Sharma",
-            serviceType: "Doctor",
-            experience: 8,
-            gender: "Male",
-            rating: 4.8,
-            available: true
-        },
-        {
-            id: 2,
-            name: "Dr. Priya Mehta",
-            serviceType: "Doctor",
-            experience: 6,
-            gender: "Female",
-            rating: 4.9,
-            available: true
-        },
-        {
-            id: 3,
-            name: "Dr. Arjun Kapoor",
-            serviceType: "Doctor",
-            experience: 10,
-            gender: "Male",
-            rating: 4.7,
-            available: false
+   useEffect(() => {
+
+    const fetchDoctors = async () => {
+        try {
+            const response = await api.get("/users/all-doctors");
+
+            console.log(response.data);
+
+            setDoctors(response.data.data);
+
+        } catch (error) {
+            console.log(error);
+            console.log("Error fetching doctors:", error);
         }
-    ];
+    };
 
+    fetchDoctors();
+
+}, []);
+
+   
     return (
         <div className="min-h-screen bg-slate-950 text-white">
 
@@ -145,7 +139,7 @@ function DoctorsPage() {
                         {doctors.map((doctor) => (
 
                             <div
-                                key={doctor.id}
+                                key={doctor._id}
                                 className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:-translate-y-1 hover:border-slate-700"
                             >
 
@@ -159,7 +153,7 @@ function DoctorsPage() {
                                     <div>
 
                                         <h3 className="text-lg font-semibold">
-                                            {doctor.name}
+                                            {doctor.fullname}
                                         </h3>
 
                                         <p className="text-sm text-blue-500">
@@ -180,7 +174,7 @@ function DoctorsPage() {
                                         </span>
 
                                         <span className="text-slate-300">
-                                            {doctor.experience} years
+                                            {doctor.yearsOfExperience} years
                                         </span>
                                     </div>
 

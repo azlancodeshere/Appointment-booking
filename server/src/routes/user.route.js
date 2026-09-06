@@ -8,6 +8,8 @@ import {
     changeCurrentPassword, 
     updateAccount, getCurrentUser, 
     getAllUsers, 
+    getAllDoctors,
+  getAllLawyers, getAllTrainers, getAllSalons,
     refreshAccessToken}
      from "../controllers/user.controller.js"
 
@@ -22,6 +24,10 @@ router.route("/login").post(loginUser);
 router.route("/refresh-token").post(refreshAccessToken);
 
 router.route("/").get(getAllUsers)
+router.route("/all-doctors").get(getAllDoctors);
+router.route("/all-lawyers").get(getAllLawyers);  
+router.route("/all-trainers").get(getAllTrainers);
+router.route("/all-salons").get(getAllSalons);
 
 // Protected routes
 router.route("/logout").post(verifyJWT, logoutUser);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     FaCut,
@@ -6,45 +6,42 @@ import {
     FaCalendarCheck,
     FaStar,
 } from "react-icons/fa";
+import api from "../api/api.js"
+import Navbar from "../components/Navbar.jsx";  
 
 function BarberPage() {
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
 
-    const barbers = [
-        {
-            id: 1,
-            name: "Style Studio",
-            experience: "8 years",
-            gender: "Male",
-            rating: "4.9",
-            specialty: "Hair Styling",
-        },
-        {
-            id: 2,
-            name: "Classic Cuts",
-            experience: "6 years",
-            gender: "Male",
-            rating: "4.8",
-            specialty: "Haircut & Grooming",
-        },
-        {
-            id: 3,
-            name: "Gentleman's Salon",
-            experience: "10 years",
-            gender: "Male",
-            rating: "4.7",
-            specialty: "Beard & Hair",
-        },
-    ];
+    const [barbers, setBarbers] = useState([]);
+  
+    useEffect(() => {
 
-    const filteredBarbers = barbers.filter((barber) =>
-        barber.name.toLowerCase().includes(search.toLowerCase()) ||
-        barber.specialty.toLowerCase().includes(search.toLowerCase())
-    );
+    const fetchBarbers = async () => {
+        try {
+            const response = await api.get("/users/all-salons");
+
+            console.log(response.data);
+
+            setBarbers(response.data.data);
+
+        } catch (error) {
+            console.log(error);
+            console.log("Error fetching barbers:", error);
+        }
+    };
+
+    fetchBarbers();
+
+}, []);
+
+
+    
 
     return (
         <div className="min-h-screen bg-slate-950 text-white">
+
+            <Navbar/>   
 
             {/* Header */}
             <section className="border-b border-slate-800 px-8 py-14">
@@ -103,13 +100,13 @@ function BarberPage() {
                     </h2>
 
                     <p className="mt-2 text-slate-400">
-                        {filteredBarbers.length} professionals found
+                        {barbers.length} professionals found
                     </p>
 
 
                     <div className="mt-10 grid gap-6 md:grid-cols-2">
 
-                        {filteredBarbers.map((barber) => (
+                        {barbers.map((barber) => (
 
                             <div
                                 key={barber.id}
@@ -126,7 +123,7 @@ function BarberPage() {
                                     <div>
 
                                         <h3 className="text-2xl font-bold">
-                                            {barber.name}
+                                            {barber.username}
                                         </h3>
 
                                         <p className="mt-1 text-blue-500">
@@ -145,7 +142,7 @@ function BarberPage() {
                                         <span>Experience</span>
 
                                         <span className="text-white">
-                                            {barber.experience}
+                                            {barber.yearsOfExperience}
                                         </span>
                                     </div>
 

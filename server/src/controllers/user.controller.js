@@ -455,6 +455,102 @@ const getAllUsers = async (req, res) => {
 
 }
 
+const getAllDoctors = async (req, res) => {
+    try {
+        const doctors = await User.find({
+            serviceType: "doctor"
+        });
+
+        return res.status(200).json(
+           new ApiResponse(
+                200,
+                "Doctors fetched successfully",
+                doctors
+            )       
+        );
+
+    } catch (error) {
+        return res.status(500).json(
+            new ApiError(
+                500,
+                "Error fetching doctors"
+            )
+        );
+    }
+};
+
+const getAllLawyers = async (req, res) => {
+    try {
+        const lawyers = await User.find({
+            serviceType: "lawyer"
+        });
+
+        return res.status(200).json(
+           new ApiResponse(
+                200,
+                "Lawyers fetched successfully",
+                lawyers     
+            )       
+        );
+
+    } catch (error) {
+        return res.status(500).json(
+            new ApiError(
+                500,
+                "Error fetching lawyers"
+            )
+        );
+    }
+};
+
+const getAllTrainers = async (req, res) => {
+    try {
+        const trainers = await User.find({
+            serviceType: "trainer"
+        });
+
+        return res.status(200).json(
+           new ApiResponse(
+                200,
+                "Trainers fetched successfully",
+                trainers
+            )       
+        );
+
+    } catch (error) {
+        return res.status(500).json(
+            new ApiError(
+                500,
+                "Error fetching trainers"
+            )
+        );
+    }
+};
+
+const getAllSalons = async (req, res) => {
+    try {
+        const salons = await User.find({
+            serviceType: "salon"
+        });
+
+        return res.status(200).json(
+           new ApiResponse(
+                200,
+                "Salons fetched successfully",
+                salons
+            )       
+        );
+
+    } catch (error) {
+        return res.status(500).json(
+            new ApiError(
+                500,
+                "Error fetching salons"
+            )
+        );
+    }
+};
 
 
-export { registerUser, loginUser, logoutUser, changeCurrentPassword, updateAccount, getCurrentUser, getAllUsers, refreshAccessToken }
+
+export { registerUser, loginUser, logoutUser, changeCurrentPassword, updateAccount, getCurrentUser, getAllUsers, refreshAccessToken, getAllDoctors, getAllLawyers, getAllTrainers, getAllSalons }

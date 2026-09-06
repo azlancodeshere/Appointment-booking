@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     FaDumbbell,
@@ -6,46 +6,38 @@ import {
     FaCalendarCheck,
     FaStar,
 } from "react-icons/fa";
+import api from "../api/api.js" 
+import Navbar from "../components/Navbar.jsx";  
 
 function TrainerPage() {
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
 
-    const trainers = [
-        {
-            id: 1,
-            name: "Rahul Fitness",
-            experience: "7 years",
-            gender: "Male",
-            rating: "4.9",
-            specialty: "Strength Training",
-        },
-        {
-            id: 2,
-            name: "Priya Fitness",
-            experience: "5 years",
-            gender: "Female",
-            rating: "4.8",
-            specialty: "Yoga",
-        },
-        {
-            id: 3,
-            name: "Arjun Fitness",
-            experience: "9 years",
-            gender: "Male",
-            rating: "4.7",
-            specialty: "Personal Training",
-        },
-    ];
+   const [trainers, setTrainers]= useState([])
 
-    const filteredTrainers = trainers.filter((trainer) =>
-        trainer.name.toLowerCase().includes(search.toLowerCase()) ||
-        trainer.specialty.toLowerCase().includes(search.toLowerCase())
-    );
+     useEffect(() => {
+   
+       const fetchTrainers = async () =>{
+        try{
+
+            const response = await api.get("/users/all-trainers")
+            console.log(response.data)
+        
+            setTrainers(response.data.data)
+
+        }catch(error){
+            console.error("Error fetching trainers:", error);
+        }
+       }
+      
+       fetchTrainers();
+   }, []);
+   
 
     return (
         <div className="min-h-screen bg-slate-950 text-white">
-
+           
+           <Navbar/>
             {/* Header */}
             <section className="border-b border-slate-800 px-8 py-14">
 
@@ -102,13 +94,13 @@ function TrainerPage() {
                     </h2>
 
                     <p className="mt-2 text-slate-400">
-                        {filteredTrainers.length} professionals found
+                        {trainers.length} professionals found
                     </p>
 
 
                     <div className="mt-10 grid gap-6 md:grid-cols-2">
 
-                        {filteredTrainers.map((trainer) => (
+                        {trainers.map((trainer) => (
 
                             <div
                                 key={trainer.id}
@@ -124,7 +116,7 @@ function TrainerPage() {
                                     <div>
 
                                         <h3 className="text-2xl font-bold">
-                                            {trainer.name}
+                                            {trainer.username}
                                         </h3>
 
                                         <p className="mt-1 text-blue-500">
@@ -141,7 +133,7 @@ function TrainerPage() {
                                     <div className="flex justify-between">
                                         <span>Experience</span>
                                         <span className="text-white">
-                                            {trainer.experience}
+                                            {trainer.yearsOfExperience}
                                         </span>
                                     </div>
 

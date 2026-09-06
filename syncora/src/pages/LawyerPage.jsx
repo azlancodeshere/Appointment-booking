@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     FaBalanceScale,
@@ -6,45 +6,40 @@ import {
     FaCalendarCheck,
     FaStar,
 } from "react-icons/fa";
+import api from "../api/api.js"
+import Navbar from "../components/Navbar.jsx";
 
 function LawyerPage() {
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
+    
+    const [lawyers, setLawyers] = useState([])
+        
+useEffect(() => {
 
-    const lawyers = [
-        {
-            id: 1,
-            name: "Adv. Vikram Singh",
-            experience: "12 years",
-            gender: "Male",
-            rating: "4.9",
-            specialty: "Criminal Law",
-        },
-        {
-            id: 2,
-            name: "Adv. Ananya Verma",
-            experience: "8 years",
-            gender: "Female",
-            rating: "4.8",
-            specialty: "Family Law",
-        },
-        {
-            id: 3,
-            name: "Adv. Rohit Malhotra",
-            experience: "10 years",
-            gender: "Male",
-            rating: "4.7",
-            specialty: "Business Law",
-        },
-    ];
+    const fetchLawyers = async () => {
+        try {
+            const response = await api.get("/users/all-lawyers");
 
-    const filteredLawyers = lawyers.filter((lawyer) =>
-        lawyer.name.toLowerCase().includes(search.toLowerCase()) ||
-        lawyer.specialty.toLowerCase().includes(search.toLowerCase())
-    );
+            console.log(response.data);
+
+            setLawyers(response.data.data);
+
+        } catch (error) {
+            console.log(error);
+            console.log("Error fetching lawyers:", error);
+        }
+    };
+
+    fetchLawyers();
+
+}, []);
+    
 
     return (
         <div className="min-h-screen bg-slate-950 text-white">
+
+            <Navbar/>
 
             {/* Header */}
             <section className="border-b border-slate-800 px-8 py-14">
@@ -102,18 +97,18 @@ function LawyerPage() {
                     </h2>
 
                     <p className="mt-2 text-slate-400">
-                        {filteredLawyers.length} professionals found
+                        {lawyers.length} professionals found
                     </p>
 
 
                     <div className="mt-10 grid gap-6 md:grid-cols-2">
 
-                        {filteredLawyers.map((lawyer) => (
+                        {lawyers.map((lawyer) => (
 
                             <div
                                 key={lawyer.id}
                                 className="rounded-2xl border border-slate-800 bg-slate-900 p-8"
-                            >
+                            >           
 
                                 <div className="flex items-center gap-5">
 
@@ -124,7 +119,7 @@ function LawyerPage() {
                                     <div>
 
                                         <h3 className="text-2xl font-bold">
-                                            {lawyer.name}
+                                            {lawyer.username}
                                         </h3>
 
                                         <p className="mt-1 text-blue-500">
@@ -138,10 +133,10 @@ function LawyerPage() {
 
                                 <div className="mt-8 space-y-4 text-slate-400">
 
-                                    <div className="flex justify-between">
+                                    <div className= "flex justify-between">
                                         <span>Experience</span>
-                                        <span className="text-white">
-                                            {lawyer.experience}
+                                        <span classN    ame="text-white">
+                                            {lawyer.yearsOfExperience}
                                         </span>
                                     </div>
 
