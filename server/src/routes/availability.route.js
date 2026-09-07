@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { setAvailability,getProfessionalAvailability  } from "../controllers/availability.controller.js";
+import { setAvailability,getProfessionalAvailability,getAvailableToday  } from "../controllers/availability.controller.js";
 
 import { verifyJWT } from "../middleware/Auth.middleware.js";
 
@@ -12,6 +12,10 @@ const router = Router();
 router.route("/set-availability").post(
     verifyJWT,
     setAvailability
+);
+router.route("/available-today").get(
+    verifyJWT,
+    getAvailableToday
 );
 
 router.route("/:professionalId")

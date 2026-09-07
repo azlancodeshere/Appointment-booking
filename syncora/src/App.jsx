@@ -1,26 +1,44 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
+// Authentication
 import RegisterPage from "./pages/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
-import HomePage from "./pages/HomePage.jsx";
 
+// Main pages
+import HomePage from "./pages/HomePage.jsx";
 import DoctorsPage from "./pages/DoctorsPage.jsx";
 import LawyerPage from "./pages/LawyerPage.jsx";
 import BarberPage from "./pages/BarberPage.jsx";
 import TrainerPage from "./pages/TrainerPage.jsx";
 
+// Doctor pages
+import AvailabilityPage from "./pages/Doctor/AvailabilityPage.jsx";
+import DoctorAvailabilityPage from "./pages/Doctor/DoctorAvailabilityPage.jsx";
+
+// Professional pages
+import ProfessionalAppointmentsPage
+    from "./pages/ProfessionalAppointmentsPage.jsx";
+
 
 function App() {
+
     return (
         <Routes>
 
-            {/* Default */}
+            {/* =========================
+                DEFAULT
+            ========================= */}
+
             <Route
                 path="/"
                 element={<Navigate to="/home" replace />}
             />
 
-            {/* Authentication */}
+
+            {/* =========================
+                AUTHENTICATION
+            ========================= */}
+
             <Route
                 path="/register"
                 element={<RegisterPage />}
@@ -31,37 +49,73 @@ function App() {
                 element={<LoginPage />}
             />
 
-            {/* Home */}
+
+            {/* =========================
+                HOME
+            ========================= */}
+
             <Route
                 path="/home"
                 element={<HomePage />}
             />
 
-            {/* Doctor */}
+
+            {/* =========================
+                CLIENT - PROFESSIONAL LIST
+            ========================= */}
+
             <Route
                 path="/doctors"
                 element={<DoctorsPage />}
             />
 
-            {/* Lawyer */}
             <Route
                 path="/lawyers"
                 element={<LawyerPage />}
             />
 
-            {/* Barber */}
             <Route
                 path="/barbers"
                 element={<BarberPage />}
             />
 
-            {/* Trainer */}
             <Route
                 path="/trainers"
                 element={<TrainerPage />}
-            />      
+            />
 
-           
+
+            {/* =========================
+                PROFESSIONAL AVAILABILITY
+            ========================= */}
+
+            {/* Professional creates slots */}
+
+            <Route
+                path="/availability"
+                element={<AvailabilityPage />}
+            />
+
+
+            {/* Client sees selected doctor's slots */}
+
+            <Route
+                path="/doctors/:doctorId/availability"
+                element={<DoctorAvailabilityPage />}
+            />
+
+
+            {/* =========================
+                PROFESSIONAL APPOINTMENTS
+            ========================= */}
+
+            {/* Professional sees client requests */}
+
+            <Route
+                path="/professional/appointments"
+                element={<ProfessionalAppointmentsPage />}
+            />
+
 
         </Routes>
     );

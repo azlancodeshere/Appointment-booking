@@ -9,9 +9,14 @@ import { Availability } from "../models/availability.model.js"
 const bookAppointment = async (req, res) => {
     try {
 
+        console.log("REQ USER:", req.user);
+        console.log("USER ID:", req.user?._id);
+        console.log("USER ROLE:", req.user?.role);
+
+
         const { professional, appointmentDate, appointmentTime } = req.body
 
-        if ([professional, appointmentDate, appointmentTime].some((field) => !field || field.trim() === "")) {
+        if (!professional || !appointmentDate || !appointmentTime) {
 
             throw new ApiError(
                 400,
@@ -62,10 +67,7 @@ const bookAppointment = async (req, res) => {
 
         // Check selected time is inside available slots
         const isAvailable = availability.slots.some((slot) => {
-            return (
-                appointmentTime >= slot.startTime &&
-                appointmentTime <= slot.endTime
-            );
+            return slot.startTime === appointmentTime
         });
 
 
@@ -131,7 +133,11 @@ const getMyAppointments = async (req, res) => {
         if (req.user.role === "client") {
             appointments = await Appointment.find({
                 client: req.user._id
-            })
+            }).populate(
+        "professional",
+        "fullname email serviceType specialization"
+    );
+
 
         }
 
@@ -141,8 +147,10 @@ const getMyAppointments = async (req, res) => {
 
             appointments = await Appointment.find({
                 professional: req.user._id
-            })
-
+            }).populate(
+                "client",
+                "fullname email"
+            );
         }
 
 

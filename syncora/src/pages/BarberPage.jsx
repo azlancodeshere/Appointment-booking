@@ -109,7 +109,7 @@ function BarberPage() {
                         {barbers.map((barber) => (
 
                             <div
-                                key={barber.id}
+                                key={barber._id}
                                 className="rounded-2xl border border-slate-800 bg-slate-900 p-8"
                             >
 
@@ -156,14 +156,16 @@ function BarberPage() {
                                     </div>
 
 
-                                    <div className="flex justify-between">
-                                        <span>Rating</span>
-
-                                        <span className="flex items-center gap-2 text-yellow-400">
-                                            <FaStar />
-                                            {barber.rating}
+                                   <div className="flex justify-between text-sm">
+                                        <span className="text-slate-500">
+                                          Specialization
                                         </span>
+
+                                        <p className="text-sm text-blue-500">
+                                            {barber.specialization  }
+                                        </p>
                                     </div>
+
 
                                 </div>
 
@@ -186,7 +188,7 @@ function BarberPage() {
 
                                     <button
                                         onClick={() =>
-                                            navigate(`/barbers/${barber.id}`)
+                                            navigate(`/barbers/${barber._id}`)
                                         }
                                         className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-4 font-semibold hover:bg-blue-700"
                                     >

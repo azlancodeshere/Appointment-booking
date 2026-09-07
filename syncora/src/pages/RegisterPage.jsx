@@ -7,6 +7,40 @@ function RegisterPage() {
 
   const navigate = useNavigate();
 
+  const specializations = {
+    doctor: [
+      "Cardiologist",
+      "Dermatologist",
+      "Neurologist",
+      "Dentist",
+      "General Physician"
+    ],
+
+    lawyer: [
+      "Criminal Lawyer",
+      "Family Lawyer",
+      "Corporate Lawyer",
+      "Civil Lawyer",
+      "Property Lawyer"
+    ],
+
+    trainer: [
+      "Fitness Trainer",
+      "Personal Trainer",
+      "Yoga Trainer",
+      "Strength Trainer",
+      "Nutrition Trainer"
+    ],
+
+    salon: [
+      "Hair Stylist",
+      "Hair Colorist",
+      "Makeup Artist",
+      "Skin Specialist",
+      "Nail Artist"
+    ]
+  };
+
   const [formData, setFormData] = useState({
     fullname: "",
     username: "",
@@ -14,7 +48,8 @@ function RegisterPage() {
     password: "",
     gender: "",
     yearsOfExperience: "",
-    serviceType: ""
+    serviceType: "",
+    specialization: ""  
   });
 
   const handleChange = (e) => {
@@ -53,7 +88,7 @@ function RegisterPage() {
     <div className="min-h-screen bg-slate-950 px-4 py-10">
       <div className="mx-auto w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-8 shadow-2xl">
 
-       
+
         <div className="mb-6">
           <label className="mb-2 block text-sm font-medium text-slate-300">
             Select your role
@@ -79,7 +114,7 @@ function RegisterPage() {
         </div>
 
 
-      
+
         {role === "client" && (
           <>
             <div className="mb-8 text-center">
@@ -113,7 +148,7 @@ function RegisterPage() {
               </div>
 
 
-             
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Username
@@ -130,7 +165,7 @@ function RegisterPage() {
               </div>
 
 
-              
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Email
@@ -147,7 +182,7 @@ function RegisterPage() {
               </div>
 
 
-              
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Password
@@ -164,7 +199,7 @@ function RegisterPage() {
               </div>
 
 
-             
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Gender
@@ -195,7 +230,7 @@ function RegisterPage() {
               </div>
 
 
-             
+
               <button
                 type="submit"
                 className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition duration-200 hover:bg-blue-700 active:scale-[0.98]"
@@ -219,7 +254,7 @@ function RegisterPage() {
         )}
 
 
-       
+
         {role === "professional" && (
           <>
             <div className="mb-8 text-center">
@@ -254,7 +289,7 @@ function RegisterPage() {
               </div>
 
 
-             
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Username
@@ -271,7 +306,7 @@ function RegisterPage() {
               </div>
 
 
-            
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Email
@@ -288,7 +323,7 @@ function RegisterPage() {
               </div>
 
 
-             
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Password
@@ -305,7 +340,7 @@ function RegisterPage() {
               </div>
 
 
-             
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Gender
@@ -336,7 +371,7 @@ function RegisterPage() {
               </div>
 
 
-              
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Years of Experience
@@ -354,7 +389,7 @@ function RegisterPage() {
               </div>
 
 
-             
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-300">
                   Service Type
@@ -388,8 +423,36 @@ function RegisterPage() {
                 </select>
               </div>
 
+              {formData.serviceType && (
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-300">
+                    Specialization
+                  </label>
 
-             
+                  <select
+                    name="specialization"
+                    value={formData.specialization}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  >
+                    <option value="">
+                      Select your specialization
+                    </option>
+
+                    {specializations[formData.serviceType]?.map((specialization) => (
+                      <option
+                        key={specialization}
+                        value={specialization}
+                      >
+                        {specialization}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+
+
               <button
                 type="submit"
                 className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition duration-200 hover:bg-blue-700 active:scale-[0.98]"

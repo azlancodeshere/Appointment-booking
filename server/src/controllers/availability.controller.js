@@ -55,6 +55,7 @@ const setAvailability = async (req, res) => {
     }
 }
 
+
 //kisi specific professional ki pehle se saved availability fetch/dekhna
 const getProfessionalAvailability = async (req, res) => {
 
@@ -101,8 +102,65 @@ const getProfessionalAvailability = async (req, res) => {
 }
 
 
+const getAvailableToday = async (req, res) => {
+    try {
+
+         const { serviceType } = req.query;
+         
+        const today = new Date();
+
+        const startOfDay = new Date(today);
+        startOfDay.setHours(0, 0, 0, 0);
+
+        const endOfDay = new Date(today);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        const availability = await Availability.find({
+            date: {
+                $gte: startOfDay,
+                $lte: endOfDay
+            }
+        }).populate({
+            path: "professional",
+            match: {
+                role: "professional",
+                serviceType: serviceType,
+                isAvailable: true
+            },
+            select: "-password -refreshToken"
+        });
+
+        const professionals = availability
+            .map((item) => item.professional)
+            .filter((professional) => professional);
+
+        return res.status(200).json(
+            new ApiResponse(
+                200,
+                "Available professionals fetched successfully",
+                professionals
+            )
+        );
+
+    } catch (error) {
+
+        return res.status(
+            error.statusCode || 500
+        ).json(
+            new ApiError(
+                error.statusCode || 500,
+                error.message || "Something went wrong"
+            )
+        );
+    }
+};
+
+
 export {
     setAvailability,
-    getProfessionalAvailability
+    getProfessionalAvailability,
+    getAvailableToday
 
 }
+
+

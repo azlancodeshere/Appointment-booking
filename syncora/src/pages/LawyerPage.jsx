@@ -106,7 +106,7 @@ useEffect(() => {
                         {lawyers.map((lawyer) => (
 
                             <div
-                                key={lawyer.id}
+                                key={lawyer._id}
                                 className="rounded-2xl border border-slate-800 bg-slate-900 p-8"
                             >           
 
@@ -135,7 +135,7 @@ useEffect(() => {
 
                                     <div className= "flex justify-between">
                                         <span>Experience</span>
-                                        <span classN    ame="text-white">
+                                        <span className="text-white">
                                             {lawyer.yearsOfExperience}
                                         </span>
                                     </div>
@@ -147,14 +147,16 @@ useEffect(() => {
                                         </span>
                                     </div>
 
-                                    <div className="flex justify-between">
-                                        <span>Rating</span>
-
-                                        <span className="flex items-center gap-2 text-yellow-400">
-                                            <FaStar />
-                                            {lawyer.rating}
+                                   <div className="flex justify-between text-sm">
+                                        <span className="text-slate-500">
+                                          Spacialization
                                         </span>
+
+                                        <p className="text-sm text-blue-500">
+                                            {lawyer.specialization  }
+                                        </p>
                                     </div>
+
 
                                 </div>
 
@@ -172,7 +174,7 @@ useEffect(() => {
 
                                     <button
                                         onClick={() =>
-                                            navigate(`/lawyers/${lawyer.id}`)
+                                            navigate(`/lawyers/${lawyer._id}`)
                                         }
                                         className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-4 font-semibold hover:bg-blue-700"
                                     >

@@ -108,21 +108,21 @@ const refreshAccessToken = async (req, res) => {
 const registerUser = async (req, res) => {
     try {
         const { email, password, username, fullname, role, gender } = req.body
-        let { serviceType, yearsOfExperience } = req.body
+        let { serviceType, yearsOfExperience, specialization } = req.body
 
         if ([email, password, username, fullname, role].some((field) => !field || field.trim() === "")) {
             throw new ApiError(400, "All fields are required")
         }
 
         if (role === "professional") {
-            if (!yearsOfExperience || !serviceType) {
+            if (!yearsOfExperience || !serviceType || !specialization) {
                 throw new ApiError(
                     400,
-                    "Years of experience and service type are required for professionals"
+                    "Years of experience, service type, and specialization are required for professionals"
                 )
             }
         } else {
-           
+            specialization = undefined
             serviceType = undefined
             yearsOfExperience = undefined
         }
@@ -143,7 +143,8 @@ const registerUser = async (req, res) => {
             role,
             gender,
             serviceType,
-            yearsOfExperience
+            yearsOfExperience,
+            specialization  
         })
 
         const createdUser = await User.findById(user._id).select("-password -refreshToken");

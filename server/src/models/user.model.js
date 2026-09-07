@@ -65,6 +65,16 @@ const userSchema = new mongoose.Schema({
         },
         min: 0
     },
+    specialization: {
+        type: String,
+        required: function () {
+            return this.role === "professional" 
+        }
+    },
+    isAvailable: {
+        type: Boolean,
+        default: true
+    },  
 
     refreshToken: {
         type: String

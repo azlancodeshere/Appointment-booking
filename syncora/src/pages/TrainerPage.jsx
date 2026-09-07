@@ -103,7 +103,7 @@ function TrainerPage() {
                         {trainers.map((trainer) => (
 
                             <div
-                                key={trainer.id}
+                                key={trainer._id}
                                 className="rounded-2xl border border-slate-800 bg-slate-900 p-8"
                             >
 
@@ -144,14 +144,16 @@ function TrainerPage() {
                                         </span>
                                     </div>
 
-                                    <div className="flex justify-between">
-                                        <span>Rating</span>
-
-                                        <span className="flex items-center gap-2 text-yellow-400">
-                                            <FaStar />
-                                            {trainer.rating}
+                                   <div className="flex justify-between text-sm">
+                                        <span className="text-slate-500">
+                                          Spacialization
                                         </span>
+
+                                        <p className="text-sm text-blue-500">
+                                            {trainer.specialization  }
+                                        </p>
                                     </div>
+
 
                                 </div>
 
@@ -169,7 +171,7 @@ function TrainerPage() {
 
                                     <button
                                         onClick={() =>
-                                            navigate(`/trainers/${trainer.id}`)
+                                            navigate(`/trainers/${trainer._id}`)
                                         }
                                         className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-4 font-semibold hover:bg-blue-700"
                                     >

@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
@@ -13,33 +14,35 @@ import api from "../api/api.js"
 function DoctorsPage() {
     const [doctors, setDoctors] = useState([]);
 
-   useEffect(() => {
+     const navigate = useNavigate();
 
-    const fetchDoctors = async () => {
-        try {
-            const response = await api.get("/users/all-doctors");
+    useEffect(() => {
 
-            console.log(response.data);
+        const fetchDoctors = async () => {
+            try {
+                const response = await api.get("/users/all-doctors");
 
-            setDoctors(response.data.data);
+                console.log(response.data);
 
-        } catch (error) {
-            console.log(error);
-            console.log("Error fetching doctors:", error);
-        }
-    };
+                setDoctors(response.data.data);
 
-    fetchDoctors();
+            } catch (error) {
+                console.log(error);
+                console.log("Error fetching doctors:", error);
+            }
+        };
 
-}, []);
+        fetchDoctors();
 
-   
+    }, []);
+
+
     return (
         <div className="min-h-screen bg-slate-950 text-white">
 
             <Navbar />
 
-           
+
             <section className="border-b border-slate-800 px-6 py-16">
 
                 <div className="mx-auto max-w-7xl">
@@ -61,7 +64,7 @@ function DoctorsPage() {
 
                     </div>
 
-                 
+
                     <div className="mt-8 flex max-w-3xl">
 
                         <div className="relative w-full">
@@ -87,12 +90,12 @@ function DoctorsPage() {
             </section>
 
 
-            
+
             <section className="px-6 py-14">
 
                 <div className="mx-auto max-w-7xl">
 
-                   
+
                     <div className="mb-10 flex flex-wrap gap-4">
 
                         <select className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-300 outline-none">
@@ -117,7 +120,7 @@ function DoctorsPage() {
                     </div>
 
 
-                  
+
                     <div className="mb-6 flex items-center justify-between">
 
                         <div>
@@ -133,7 +136,7 @@ function DoctorsPage() {
                     </div>
 
 
-                   
+
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
                         {doctors.map((doctor) => (
@@ -143,7 +146,7 @@ function DoctorsPage() {
                                 className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:-translate-y-1 hover:border-slate-700"
                             >
 
-                                
+
                                 <div className="flex items-center gap-4">
 
                                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-600/10 text-2xl text-blue-500">
@@ -165,7 +168,7 @@ function DoctorsPage() {
                                 </div>
 
 
-                               
+
                                 <div className="mt-6 space-y-3">
 
                                     <div className="flex justify-between text-sm">
@@ -190,22 +193,21 @@ function DoctorsPage() {
 
                                     <div className="flex justify-between text-sm">
                                         <span className="text-slate-500">
-                                            Rating
+                                          Spacialization
                                         </span>
 
-                                        <span className="flex items-center gap-1 text-yellow-400">
-                                            <FaStar />
-                                            {doctor.rating}
-                                        </span>
+                                        <p className="text-sm text-blue-500">
+                                            {doctor.specialization  }
+                                        </p>
                                     </div>
 
                                 </div>
 
 
-                               
+
                                 <div className="mt-5">
 
-                                    {doctor.available ? (
+                                    {doctor.isAvailable ? (
 
                                         <span className="rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400">
                                             Available for booking
@@ -222,7 +224,7 @@ function DoctorsPage() {
                                 </div>
 
 
-                                
+
                                 <div className="mt-6 flex gap-3">
 
                                     <button className="flex-1 rounded-lg border border-slate-700 py-3 text-sm font-medium text-slate-300 hover:bg-slate-800">
@@ -230,7 +232,8 @@ function DoctorsPage() {
                                     </button>
 
                                     <button
-                                        disabled={!doctor.available}
+                                        disabled={!doctor.isAvailable}
+                                         onClick={() => navigate(`/doctors/${doctor._id}/availability`)}
                                         className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 text-sm font-semibold hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-500"
                                     >
                                         <FaCalendarCheck />

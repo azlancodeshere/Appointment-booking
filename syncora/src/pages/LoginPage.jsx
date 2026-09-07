@@ -1,52 +1,62 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api.js"
-import {AuthContext} from "../context/AuthContext.jsx"
+import { AuthContext } from "../context/AuthContext.jsx"
 
 function LoginPage() {
 
-    const [formData, setFormData] = useState({
-        email:"",
-        password:""
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
 
+  })
+
+
+  const navigate = useNavigate();
+
+
+  const { setUser, setIsAuthenticated } = useContext(AuthContext)
+
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
 
-    const navigate = useNavigate();
-    
+    console.log(formData)
 
-   const {setUser, setIsAuthenticated} = useContext(AuthContext)
+    try {
 
+      const response = await api.post("/users/login", formData)
+      console.log(response.data)
+      setUser(response.data.data);
+      setIsAuthenticated(true)
 
-    const handleChange = (e)=>{
-        setFormData({
-            ...formData,
-            [e.target.name]:e.target.value
-        }) }
+      const user = response.data.data;
 
-        const handleSubmit = async (e) =>{
-            e.preventDefault();
+      console.log("LOGGED IN USER:", user);
+console.log("ROLE:", user.role);
 
+      if (user.role === "professional") {
+        navigate("/availability");
+      } else {
+        navigate("/home");
+      }
 
-            console.log(formData)
+    } catch (error) {
+      console.log(error)
+      setIsAuthenticated(false)
 
-            try {
-
-              const response = await api.post("/users/login", formData)
-              console.log(response.data)
-              setUser(response.data.data);
-            setIsAuthenticated(true)
- 
-            navigate("/home")
-              
-            } catch (error) {
-              console.log(error)
-               setIsAuthenticated(false)
-              
-            }
+    }
 
 
-        }
+  }
 
 
 
@@ -56,7 +66,7 @@ function LoginPage() {
 
       <div className="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-8 shadow-2xl">
 
-        
+
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-white">
             Welcome Back
@@ -68,11 +78,11 @@ function LoginPage() {
         </div>
 
 
-        
-        <form className="space-y-5"
-        onSubmit={handleSubmit}>
 
-         
+        <form className="space-y-5"
+          onSubmit={handleSubmit}>
+
+
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium text-slate-300">
               Email
@@ -89,7 +99,7 @@ function LoginPage() {
           </div>
 
 
-        
+
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium text-slate-300">
               Password
@@ -106,7 +116,7 @@ function LoginPage() {
           </div>
 
 
-          
+
           <button
             type="submit"
             className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition duration-200 hover:bg-blue-700 active:scale-[0.98]"
@@ -117,7 +127,7 @@ function LoginPage() {
         </form>
 
 
-     
+
         <p className="mt-6 text-center text-sm text-slate-400">
           Don't have an account?{" "}
 
