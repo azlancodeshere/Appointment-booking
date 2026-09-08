@@ -45,7 +45,7 @@ function ProfessionalAppointmentsPage() {
     }, []);
 
 
-    // CONFIRM / CANCEL
+    
     const updateStatus = async (appointmentId, status) => {
 
         try {
@@ -57,7 +57,7 @@ function ProfessionalAppointmentsPage() {
                 }
             );
 
-            // status update ke baad appointments dobara fetch
+            
             fetchAppointments();
 
         } catch (error) {
@@ -221,7 +221,7 @@ function ProfessionalAppointmentsPage() {
                                 </div>
 
 
-                                {/* BUTTONS */}
+                              
 
                                 {appointment.status === "pending" && (
 

@@ -5,7 +5,7 @@ export const BASE_URL =
 
 const api = axios.create({
     baseURL: BASE_URL,
-    withCredentials: true,  // // Backend stores access and refresh tokens in HTTP-only cookies
+    withCredentials: true,   // Backend stores access and refresh tokens in HTTP-only cookies
     headers: {
         "Content-Type": "application/json"
     }

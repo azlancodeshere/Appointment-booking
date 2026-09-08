@@ -84,7 +84,7 @@ function TrainerPage() {
             </section>
 
 
-            {/* Trainers */}
+            
             <section className="px-8 py-16">
 
                 <div className="mx-auto max-w-7xl">

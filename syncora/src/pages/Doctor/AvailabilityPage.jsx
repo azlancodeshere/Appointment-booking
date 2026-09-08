@@ -21,7 +21,7 @@ function AvailabilityPage() {
 
     const navigate = useNavigate();
 
-    // Add new slot
+    
     const addSlot = () => {
         setSlots([
             ...slots,
@@ -32,7 +32,7 @@ function AvailabilityPage() {
         ]);
     };
 
-    // Remove slot
+   
     const removeSlot = (index) => {
         if (slots.length === 1) {
             return;
@@ -41,7 +41,7 @@ function AvailabilityPage() {
         setSlots(slots.filter((_, i) => i !== index));
     };
 
-    // Change slot time
+  
     const handleSlotChange = (index, field, value) => {
         const updatedSlots = [...slots];
 
@@ -50,7 +50,7 @@ function AvailabilityPage() {
         setSlots(updatedSlots);
     };
 
-    // Submit availability
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -134,7 +134,7 @@ function AvailabilityPage() {
 
                 <div className="mx-auto max-w-3xl">
 
-                    {/* Header */}
+                  
                     <div className="mb-10">
 
                         <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-500">
@@ -153,13 +153,13 @@ function AvailabilityPage() {
                     </div>
 
 
-                    {/* Form */}
+                    
                     <form
                         onSubmit={handleSubmit}
                         className="rounded-2xl border border-slate-800 bg-slate-900 p-6 md:p-8"
                     >
 
-                        {/* Date */}
+                     
                         <div className="mb-8">
 
                             <label className="mb-3 block text-sm font-medium text-slate-300">
@@ -182,7 +182,7 @@ function AvailabilityPage() {
                         </div>
 
 
-                        {/* Slots heading */}
+                       
                         <div className="mb-4 flex items-center justify-between">
 
                             <div>
@@ -200,7 +200,7 @@ function AvailabilityPage() {
                         </div>
 
 
-                        {/* Slots */}
+                       
                         <div className="space-y-4">
 
                             {slots.map((slot, index) => (
@@ -233,7 +233,7 @@ function AvailabilityPage() {
 
                                     <div className="grid gap-4 md:grid-cols-2">
 
-                                        {/* Start time */}
+                                       
                                         <div>
 
                                             <label className="mb-2 block text-sm text-slate-400">
@@ -256,7 +256,7 @@ function AvailabilityPage() {
                                         </div>
 
 
-                                        {/* End time */}
+                                       
                                         <div>
 
                                             <label className="mb-2 block text-sm text-slate-400">
@@ -287,7 +287,7 @@ function AvailabilityPage() {
                         </div>
 
 
-                        {/* Add Slot */}
+                      
                         <button
                             type="button"
                             onClick={addSlot}
@@ -298,7 +298,7 @@ function AvailabilityPage() {
                         </button>
 
 
-                        {/* Error */}
+                        
                         {error && (
 
                             <div className="mt-5 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
@@ -308,7 +308,7 @@ function AvailabilityPage() {
                         )}
 
 
-                        {/* Success */}
+                        
                         {message && (
 
                             <div className="mt-5 rounded-lg border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-400">
@@ -318,7 +318,7 @@ function AvailabilityPage() {
                         )}
 
 
-                        {/* Save */}
+                       
                         <button
                             type="submit"
                             disabled={loading}

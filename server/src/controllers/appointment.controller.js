@@ -32,7 +32,7 @@ const bookAppointment = async (req, res) => {
             )
         }
 
-        // Check professional exists
+       
         const professionalUser = await User.findById(professional);
         if (!professionalUser) {
             throw new ApiError(
@@ -49,14 +49,14 @@ const bookAppointment = async (req, res) => {
             )
         }
 
-        // Find professional availability for selected date
+       
         const availability = await Availability.findOne({
             professional,
             date: appointmentDate
         });
 
 
-        // Check availability exists
+      
         if (!availability) {
             throw new ApiError(
                 400,
@@ -65,7 +65,7 @@ const bookAppointment = async (req, res) => {
         }
 
 
-        // Check selected time is inside available slots
+       
         const isAvailable = availability.slots.some((slot) => {
             return slot.startTime === appointmentTime
         });
@@ -94,7 +94,7 @@ const bookAppointment = async (req, res) => {
         }
 
 
-        // creating appointment in database
+       
         const appointment = await Appointment.create({
             client: req.user._id, // logged-in user ki ID
             professional,
@@ -129,7 +129,7 @@ const getMyAppointments = async (req, res) => {
 
 
 
-        // Agar logged-in user client hai
+      
         if (req.user.role === "client") {
             appointments = await Appointment.find({
                 client: req.user._id
@@ -142,7 +142,7 @@ const getMyAppointments = async (req, res) => {
         }
 
 
-        // Agar logged-in user professional hai
+      
         if (req.user.role === "professional") {
 
             appointments = await Appointment.find({

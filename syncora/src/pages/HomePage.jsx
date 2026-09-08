@@ -479,13 +479,13 @@ function HomePage() {
 
                     <div>
 
-                        {/* Badge */}
+                      
                         <span className="rounded-full bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-400">
                             Simple • Fast • Reliable
                         </span>
 
 
-                        {/* Heading */}
+                       
                         <h2 className="mt-6 text-5xl font-bold leading-tight">
 
                             {currentService.heading}

@@ -5,7 +5,7 @@ import { User } from "../models/user.model.js"
 import { Availability } from "../models/availability.model.js"
 
 
-// professional khud apni date aur time slots set kare
+
 const setAvailability = async (req, res) => {
     try {
        
@@ -18,7 +18,7 @@ const setAvailability = async (req, res) => {
                 "Date and at least one slot are required"
             )
         }
-        // checked logged-in user professional or not
+       
         if (req.user.role !== "professional") {
             throw new ApiError(
                 403,

@@ -57,7 +57,7 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-3">
 
-                    {/* ADD SLOTS - Only Professional */}
+                   
                     {isAuthenticated && user?.role === "professional" && (
                         <button
                             onClick={() => navigate("/availability")}
@@ -67,7 +67,7 @@ const Navbar = () => {
                         </button>
                     )}
 
-                    {/* MY APPOINTMENTS */}
+                 
                     <button
                         className="rounded-lg border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800"
                         onClick={() => {
@@ -81,7 +81,7 @@ const Navbar = () => {
                         My Appointments
                     </button>
 
-                    {/* PROFILE */}
+                 
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 font-bold">
                         {isAuthenticated &&
                             user?.username?.charAt(0).toUpperCase()}

@@ -43,7 +43,7 @@ function BarberPage() {
 
             <Navbar/>   
 
-            {/* Header */}
+          
             <section className="border-b border-slate-800 px-8 py-14">
 
                 <div className="mx-auto max-w-7xl">
@@ -90,7 +90,7 @@ function BarberPage() {
             </section>
 
 
-            {/* Barbers */}
+          
             <section className="px-8 py-16">
 
                 <div className="mx-auto max-w-7xl">
@@ -113,7 +113,7 @@ function BarberPage() {
                                 className="rounded-2xl border border-slate-800 bg-slate-900 p-8"
                             >
 
-                                {/* Barber Info */}
+                                
                                 <div className="flex items-center gap-5">
 
                                     <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-500/10 text-3xl text-blue-500">
@@ -135,7 +135,7 @@ function BarberPage() {
                                 </div>
 
 
-                                {/* Details */}
+                              
                                 <div className="mt-8 space-y-4 text-slate-400">
 
                                     <div className="flex justify-between">
@@ -170,13 +170,13 @@ function BarberPage() {
                                 </div>
 
 
-                                {/* Availability */}
+                              
                                 <div className="mt-6 inline-block rounded-full bg-green-500/10 px-4 py-2 text-sm text-green-400">
                                     Available for booking
                                 </div>
 
 
-                                {/* Buttons */}
+                               
                                 <div className="mt-8 flex gap-4">
 
                                     <button
