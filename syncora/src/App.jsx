@@ -19,6 +19,8 @@ import DoctorAvailabilityPage from "./pages/Doctor/DoctorAvailabilityPage.jsx";
 import ProfessionalAppointmentsPage
     from "./pages/ProfessionalAppointmentsPage.jsx";
 
+import AppointmentsPage from "./pages/AppointmentsPage";
+
 
 function App() {
 
@@ -110,6 +112,13 @@ function App() {
             ========================= */}
 
             {/* Professional sees client requests */}
+
+
+            <Route
+                path="/appointments"
+                element={<AppointmentsPage />}
+            />
+
 
             <Route
                 path="/professional/appointments"

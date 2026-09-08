@@ -43,11 +43,7 @@ function LoginPage() {
       console.log("LOGGED IN USER:", user);
 console.log("ROLE:", user.role);
 
-      if (user.role === "professional") {
-        navigate("/availability");
-      } else {
-        navigate("/home");
-      }
+      navigate("/home")
 
     } catch (error) {
       console.log(error)

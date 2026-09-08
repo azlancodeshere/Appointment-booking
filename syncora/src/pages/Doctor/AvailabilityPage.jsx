@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { FaPlus, FaTrash, FaCalendarAlt } from "react-icons/fa";
 import api from "../../api/api.js";
+import { useNavigate } from "react-router-dom";
 
 function AvailabilityPage() {
     const [date, setDate] = useState("");
@@ -17,6 +18,8 @@ function AvailabilityPage() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+
+    const navigate = useNavigate();
 
     // Add new slot
     const addSlot = () => {
@@ -89,11 +92,14 @@ function AvailabilityPage() {
                     date,
                     slots
                 }
+
+              
             );
 
             console.log(response.data);
 
             setMessage("Availability saved successfully!");
+
 
             // Reset form
             setDate("");
@@ -104,6 +110,8 @@ function AvailabilityPage() {
                     endTime: ""
                 }
             ]);
+
+             navigate("/"); 
 
         } catch (error) {
             console.log("Availability error:", error);

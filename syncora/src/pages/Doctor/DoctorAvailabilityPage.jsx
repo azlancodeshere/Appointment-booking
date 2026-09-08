@@ -32,7 +32,11 @@ function DoctorAvailabilityPage() {
 
             } catch (error) {
 
-                console.log(error);
+               
+                 console.log("BOOK APPOINTMENT ERROR:", error);
+    console.log("STATUS:", error.response?.status);
+    console.log("DATA:", error.response?.data);
+
 
                 setError(
                     error.response?.data?.message ||
