@@ -9,7 +9,7 @@ import { Availability } from "../models/availability.model.js"
 const setAvailability = async (req, res) => {
     try {
        
-         console.log("LOGGED IN USER:", req.user);
+         
         const { date, slots } = req.body;
 
         if (!date || !slots || slots.length === 0) {
